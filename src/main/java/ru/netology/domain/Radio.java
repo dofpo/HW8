@@ -1,4 +1,4 @@
-package ru.netology.statistic;
+package ru.netology.domain;
 
 public class Radio {
     private int numbStation;
@@ -12,8 +12,8 @@ public class Radio {
             return;
         }
         this.numbStation = numbStation;
-
     }
+
 
     public int getNumbStation() {
         return numbStation;
@@ -21,18 +21,24 @@ public class Radio {
     }
 
     public void next() {
-        //int newCurrentStation = 0;
+        int newCurrentStation;
         if (numbStation < 9) {
-            numbStation = numbStation + 1;
+            newCurrentStation = numbStation + 1;
+        } else {
+            newCurrentStation = 0;
         }
+        setNumbStation(newCurrentStation);
     }
 
 
     public void prev() {
-        //int newCurrentStation = 0;
+        int newCurrentStation;
         if (numbStation > 0) {
-            numbStation = numbStation - 1;
+            newCurrentStation = numbStation - 1;
+        } else {
+            newCurrentStation = 9;
         }
+        setNumbStation(newCurrentStation);
     }
 
 
@@ -52,15 +58,15 @@ public class Radio {
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
-            currentVolume = currentVolume + 1;
-        }
+        int newCurrentVolume = currentVolume + 1;
+        setVolume(newCurrentVolume);
+
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
-        }
+        int newCurrentVolume = currentVolume - 1;
+        setVolume(newCurrentVolume);
+
     }
 }
 
