@@ -6,120 +6,118 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
     @Test
+    void setQuantityOfStations() {
+        Radio radio = new Radio(10);
+        assertEquals(10, radio.getQuantityOfStations());
+    }
+
+    @Test
+    public void shouldCreatRadioStation() {
+        Radio radio = new Radio();
+        radio.setAnyStation(-1);
+        assertEquals(0, radio.getNumbStation());
+    }
+
+    @Test
     public void findStationMin() {
-        Radio cond = new Radio();
-        cond.setNumbStation(-1);
-        long expected = 0;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setAnyStation(-1);
+        assertEquals(0, radio.getNumbStation());
     }
 
     @Test
     public void findStationMax() {
-        Radio cond = new Radio();
-        cond.setNumbStation(10);
-        long expected = 0;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setAnyStation(10);
+        assertEquals(0, radio.getNumbStation());
     }
-
 
     @Test
     public void pressNextStation() {
-        Radio cond = new Radio();
-        cond.setNumbStation(8);
-        cond.next();
-        long expected = 9;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setNumbStation(8);
+        radio.nextStation();
+        assertEquals(9, radio.getNumbStation());
     }
 
     @Test
     public void pressNextStationAfterMax() {
-        Radio cond = new Radio();
-        cond.setNumbStation(9);
-        cond.next();
-        long expected = 0;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setNumbStation(9);
+        radio.nextStation();
+        assertEquals(0, radio.getNumbStation());
     }
 
     @Test
+    void shouldSetPreviousStation() {
+        Radio radio = new Radio();
+        radio.setNumbStation(1);
+        radio.prevStation();
+        assertEquals(0, radio.getNumbStation());
+    }
+
+
+    @Test
     public void pressPrevStation() {
-        Radio cond = new Radio();
-        cond.setNumbStation(8);
-        cond.prev();
-        long expected = 7;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setNumbStation(0);
+        radio.prevStation();
+        assertEquals(9, radio.getNumbStation());
     }
 
     @Test
     public void pressPrevStationAfterMin() {
-        Radio cond = new Radio();
-        cond.setNumbStation(0);
-        cond.prev();
-        long expected = 9;
-        long actual = cond.getNumbStation();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setNumbStation(1);
+        radio.prevStation();
+        assertEquals(0, radio.getNumbStation());
     }
 
     @Test
     public void findVolumeMin() {
-        Radio cond = new Radio();
-        cond.setVolume(-1);
-        long expected = 0;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(-1);
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
     public void findVolumeMax() {
-        Radio cond = new Radio();
-        cond.setVolume(11);
-        long expected = 0;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(101);
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
     public void pressIncreaseVolume() {
-        Radio cond = new Radio();
-        cond.setVolume(8);
-        cond.increaseVolume();
-        long expected = 9;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(8);
+        radio.increaseVolume();
+        assertEquals(9, radio.getCurrentVolume());
     }
 
     @Test
     public void pressIncreaseVolumeAfterMax() {
-        Radio cond = new Radio();
-        cond.setVolume(10);
-        cond.increaseVolume();
-        long expected = 10;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(100);
+        radio.increaseVolume();
+        assertEquals(100, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void pressDecreaseVolumeAfterMin() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
+        radio.decreaseVolume();
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
     public void pressDecreaseVolume() {
-        Radio cond = new Radio();
-        cond.setVolume(8);
-        cond.decreaseVolume();
-        long expected = 7;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(8);
+        radio.decreaseVolume();
+        assertEquals(7, radio.getCurrentVolume());
     }
 
-    @Test
-    public void pressIncreaseVolumeAfterMin() {
-        Radio cond = new Radio();
-        cond.setVolume(0);
-        cond.decreaseVolume();
-        long expected = 0;
-        long actual = cond.getVolume();
-        assertEquals(expected, actual);
-    }
 
 }
